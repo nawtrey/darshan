@@ -18,31 +18,6 @@ import numpy as np
 if TYPE_CHECKING:
     import numpy.typing as npt
 
-def testing():
-    print("testing")
-    print("testing")
-    print("testing")
-    print("testing")
-    print("testing")
-    print("testing")
-    print("testing")
-    print("testing")
-    print("testing")
-    print("testing")
-    print("testing")
-    print("testing")
-    print("testing")
-    print("testing")
-    print("testing")
-    print("testing")
-    print("testing")
-    print("testing")
-    print("testing")
-    print("testing")
-    print("testing")
-    print("testing")
-    print("testing")
-
 
 class SegDict(TypedDict):
     """
