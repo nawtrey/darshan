@@ -101,6 +101,6 @@ jobs:
           ./configure --prefix=$DARSHAN_INSTALL_PATH --enable-shared --enable-pydarshan --enable-apxc-mod --enable-apmpi-mod
           make
           make install
-          cd darshan-util/pydarshan
+          cd pydarshan
           python -m pip install .
           python -m darshan summary tests/input/sample.darshan
