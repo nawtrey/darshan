@@ -87,3 +87,13 @@ jobs:
         with:
           files: coverage.xml
           fail_ci_if_error: False
+      # test for issue #489 to ensure the .css and .html
+      # assets are being distributed properly when building
+      # from a wheel
+      - name: Command line summary report generation from wheel install
+        run: |
+          python -m pip install wheel
+          cd darshan-util/pydarshan
+          python setup.py bdist_wheel
+          python -m pip install ./dist/*.whl
+          python -m darshan.cli.summary tests/input/sample.darshan
