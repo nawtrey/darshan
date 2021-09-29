@@ -1,4 +1,6 @@
 include README.rst
+include darshan/cli/base.html
+include darshan/cli/stylesheet.css
 
 recursive-include tests *
 recursive-include darshan *.py
