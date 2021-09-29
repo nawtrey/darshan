@@ -107,6 +107,7 @@ jobs:
       # from a wheel
       - name: Command line summary report generation from wheel install
         run: |
+          python -m pip install wheel
           export LD_LIBRARY_PATH=$PWD/scratch/darshan/darshan_install/lib
           cd scratch/darshan/darshan-util/pydarshan
           python setup.py bdist_wheel
