@@ -92,6 +92,16 @@ jobs:
       # from a wheel
       - name: Command line summary report generation from wheel install
         run: |
+          rm -r darshan_install
+          mkdir darshan_install
+          export DARSHAN_INSTALL_PATH=$PWD/darshan_install
+          git submodule update --init
+          ./prepare.sh
+          cd darshan-util
+          ./configure --prefix=$DARSHAN_INSTALL_PATH --enable-shared --enable-pydarshan
+          make
+          make install
+          cd ../
           export LD_LIBRARY_PATH=$PWD/darshan_install/lib
           cd darshan-util/pydarshan
           python -m pip install .
