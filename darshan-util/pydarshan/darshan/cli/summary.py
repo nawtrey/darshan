@@ -217,7 +217,7 @@ def main(args: Union[Any, None] = None):
 
     with importlib_resources.path(darshan.cli, "base.html") as base_path:
         # load a template object using the base template
-        template = Template(filename=base_path)
+        template = Template(filename=str(base_path))
         # render the base template
         stream = template.render(report_data=report_data)
         with open(report_filename, "w") as f:
