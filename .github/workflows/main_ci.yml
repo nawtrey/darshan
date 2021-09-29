@@ -87,20 +87,27 @@ jobs:
         with:
           files: coverage.xml
           fail_ci_if_error: False
+      - name: Build clean darshan-util
+        run: |
+          mkdir scratch
+          cd scratch
+          git clone https://github.com/darshan-hpc/darshan.git
+          cd darshan
+          git checkout pydarshan-devel
+          mkdir darshan_install
+          export DARSHAN_INSTALL_PATH=$PWD/darshan_install
+          git submodule update --init
+          ./prepare.sh
+          cd darshan-util
+          ./configure --prefix=$DARSHAN_INSTALL_PATH --enable-shared --enable-pydarshan
+          make
+          make install
       # test for issue #489 to ensure the .css and .html
       # assets are being distributed properly when building
       # from a wheel
       - name: Command line summary report generation from wheel install
         run: |
-          mkdir darshan_install_no_autoperf
-          export DARSHAN_INSTALL_PATH=$PWD/darshan_install_no_autoperf
-          export LD_LIBRARY_PATH=$PWD/darshan_install_no_autoperf/lib
-          git submodule update --init
-          ./prepare.sh
-          cd darshan-util
-          ./configure --prefix=$DARSHAN_INSTALL_PATH --enable-shared --enable-pydarshan --enable-apxc-mod --enable-apmpi-mod
-          make
-          make install
-          cd pydarshan
+          export LD_LIBRARY_PATH=$PWD/scratch/darshan/darshan_install/lib
+          cd scratch/darshan/darshan-util/pydarshan
           python -m pip install .
           python -m darshan summary tests/input/sample.darshan
