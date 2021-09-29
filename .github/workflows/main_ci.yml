@@ -90,11 +90,6 @@ jobs:
       - name: Build clean darshan-util
         run: |
           rm -r darshan_install
-          mkdir scratch
-          cd scratch
-          git clone https://github.com/darshan-hpc/darshan.git
-          cd darshan
-          git checkout pydarshan-devel
           mkdir darshan_install
           export DARSHAN_INSTALL_PATH=$PWD/darshan_install
           ./prepare.sh
@@ -108,7 +103,7 @@ jobs:
       - name: Command line summary report generation from wheel install
         run: |
           python -m pip install wheel
-          export LD_LIBRARY_PATH=$PWD/scratch/darshan/darshan_install/lib
+          export LD_LIBRARY_PATH=$PWD/darshan_install/lib
           cd scratch/darshan/darshan-util/pydarshan
           python setup.py bdist_wheel
           python -m pip install .
