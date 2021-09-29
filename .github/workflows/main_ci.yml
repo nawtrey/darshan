@@ -105,6 +105,7 @@ jobs:
           python -m pip install wheel
           export LD_LIBRARY_PATH=$PWD/darshan_install/lib
           cd darshan-util/pydarshan
+          rm -r build
           python setup.py bdist_wheel
           python -m pip install .
           python -m darshan summary tests/input/sample.darshan
