@@ -89,6 +89,7 @@ jobs:
           fail_ci_if_error: False
       - name: Build clean darshan-util
         run: |
+          rm -r darshan_install
           mkdir scratch
           cd scratch
           git clone https://github.com/darshan-hpc/darshan.git
@@ -96,7 +97,6 @@ jobs:
           git checkout pydarshan-devel
           mkdir darshan_install
           export DARSHAN_INSTALL_PATH=$PWD/darshan_install
-          git submodule update --init
           ./prepare.sh
           cd darshan-util
           ./configure --prefix=$DARSHAN_INSTALL_PATH --enable-shared --enable-pydarshan
@@ -109,5 +109,6 @@ jobs:
         run: |
           export LD_LIBRARY_PATH=$PWD/scratch/darshan/darshan_install/lib
           cd scratch/darshan/darshan-util/pydarshan
+          python setup.py bdist_wheel
           python -m pip install .
           python -m darshan summary tests/input/sample.darshan
