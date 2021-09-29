@@ -92,17 +92,15 @@ jobs:
       # from a wheel
       - name: Command line summary report generation from wheel install
         run: |
-          rm -r darshan_install
-          mkdir darshan_install
-          export DARSHAN_INSTALL_PATH=$PWD/darshan_install
+          mkdir darshan_install_no_autoperf
+          export DARSHAN_INSTALL_PATH=$PWD/darshan_install_no_autoperf
+          export LD_LIBRARY_PATH=$PWD/darshan_install_no_autoperf/lib
           git submodule update --init
           ./prepare.sh
           cd darshan-util
-          ./configure --prefix=$DARSHAN_INSTALL_PATH --enable-shared --enable-pydarshan
+          ./configure --prefix=$DARSHAN_INSTALL_PATH --enable-shared --enable-pydarshan --enable-apxc-mod --enable-apmpi-mod
           make
           make install
-          cd ../
-          export LD_LIBRARY_PATH=$PWD/darshan_install/lib
           cd darshan-util/pydarshan
           python -m pip install .
           python -m darshan summary tests/input/sample.darshan
