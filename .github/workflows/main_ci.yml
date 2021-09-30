@@ -93,5 +93,8 @@ jobs:
           cd darshan-util/pydarshan
           rm darshan/backend/apmpi.py
           rm darshan/backend/apxc.py
+          python -m pip wheel . --no-deps
+          rm darshan/cli/base.html
+          rm darshan/cli/style.css
           python -m pip install . --no-deps
           python -m darshan summary tests/input/sample.darshan
