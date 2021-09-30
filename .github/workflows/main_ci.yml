@@ -46,8 +46,7 @@ jobs:
       - name: Install pydarshan
         run: |
           cd darshan-util/pydarshan
-          # TODO: use pip per gh-476
-          python setup.py install
+          python -m pip install .
       # shim for importlib.resources on Python < 3.9
       - if: ${{matrix.python-version < 3.9}}
         name: Install importlib_resources
@@ -87,14 +86,3 @@ jobs:
         with:
           files: coverage.xml
           fail_ci_if_error: False
-      - name: Generate summary report from wheel install
-        run: |
-          export LD_LIBRARY_PATH=$PWD/darshan_install/lib
-          cd darshan-util/pydarshan
-          rm darshan/backend/apmpi.py
-          rm darshan/backend/apxc.py
-          python -m pip wheel . --no-deps
-          rm darshan/cli/base.html
-          rm darshan/cli/style.css
-          python -m pip install ./*.whl --no-deps --force-reinstall
-          python -m darshan summary tests/input/sample.darshan
