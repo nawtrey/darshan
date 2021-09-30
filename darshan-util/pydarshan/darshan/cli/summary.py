@@ -179,7 +179,7 @@ def setup_parser(parser: argparse.ArgumentParser):
 
     """
     parser.description = "Generates a Darshan Summary Report"
-
+    
     parser.add_argument(
         "log_path",
         type=str,
