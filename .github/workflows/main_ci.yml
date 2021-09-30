@@ -91,6 +91,7 @@ jobs:
         run: |
           rm -r darshan_install
           rm darshan-util/pydarshan/darshan/backend/apmpi.py
+          rm darshan-util/pydarshan/darshan/backend/apxc.py
           mkdir darshan_install
           export DARSHAN_INSTALL_PATH=$PWD/darshan_install
           ./prepare.sh
