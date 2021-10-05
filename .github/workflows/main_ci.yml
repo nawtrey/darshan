@@ -92,4 +92,4 @@ jobs:
           export LD_LIBRARY_PATH=$PWD/darshan_install/lib
           export LOG_PATH=$PWD/darshan-util/pydarshan/examples/example-logs/dxt.darshan
           cd ../
-          python -m darshan summary LOG_PATH
+          python -m darshan summary $LOG_PATH
