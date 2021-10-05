@@ -87,7 +87,7 @@ jobs:
           files: coverage.xml
           fail_ci_if_error: False
       - name: check assets
-        run:
+        run: |
           export LOG_PATH=$PWD/darshan-util/pydarshan/examples/example-logs/dxt.darshan
           cd ../
           python -m darshan summary LOG_PATH
