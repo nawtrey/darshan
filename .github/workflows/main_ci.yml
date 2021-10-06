@@ -86,8 +86,7 @@ jobs:
         with:
           files: coverage.xml
           fail_ci_if_error: False
-      - if: ${{matrix.python-version > 3.6}}
-        name: check assets
+      - name: check assets
         run: |
           export LD_LIBRARY_PATH=$PWD/darshan_install/lib
           export LOG_PATH=$PWD/darshan-util/pydarshan/examples/example-logs/dxt.darshan
