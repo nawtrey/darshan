@@ -78,5 +78,7 @@ setup(
     url='https://www.mcs.anl.gov/research/projects/darshan/',
     version='3.3.1.0',
     zip_safe=False,
-    package_data={"": ["*.darshan"]},
+    package_data={"": ["*.darshan"],
+                  "darshan": ["cli/style.css",
+                              "cli/base.html"]]},
 )
