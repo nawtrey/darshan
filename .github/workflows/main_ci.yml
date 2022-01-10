@@ -90,5 +90,6 @@ jobs:
       - name: codecov check
         uses: codecov/codecov-action@v2
         with:
+          directory: $RUNNER_TEMP
           files: coverage.xml
           fail_ci_if_error: False
